@@ -5,4 +5,5 @@ export type Item = {
   category: string
   quantity: number | string
   id: string | number
+  categoryId: string | number
 }

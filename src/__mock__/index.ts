@@ -11,6 +11,26 @@ export const item: Item = {
   image:
     'https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Avocados-3d84a3a.jpg?quality=90&resize=960,872',
   category: 'Fruit and vegetables',
+  categoryId: 1,
   id: 1,
   quantity: 1
 }
+
+export const categories = [
+  {
+    title: 'Fruit and vegetables',
+    id: 1
+  },
+  {
+    title: 'Meat and Fish',
+    id: 2
+  },
+  {
+    title: 'Beverages',
+    id: 3
+  },
+  {
+    title: 'Pets',
+    id: 4
+  }
+]
