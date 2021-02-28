@@ -1,9 +1,0 @@
-{
-  "Categories": {
-    "title": "string",
-    "items": "Items[]"
-  },
-  "Items": {
-    "title": "string"
-  }
-}
