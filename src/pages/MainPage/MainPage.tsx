@@ -1,6 +1,6 @@
 import React from 'react'
 import ShoppingItem from '../../components/UI/ShoppingItem'
-import Button from '../../components/UI/Button'
+import Button from '../../components/UI/Button/Button'
 
 import './MainPage.scss'
 
@@ -11,7 +11,7 @@ const MainPage: React.FC = () => {
         <span>Shoppingify</span> allows you take your shopping list wherever you
         go
       </h1>
-      <Button />
+      <Button type="btn--primary">Button</Button>
       <ShoppingItem />
     </div>
   )
