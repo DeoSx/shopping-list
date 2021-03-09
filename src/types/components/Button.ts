@@ -7,4 +7,5 @@ type ButtonViewsType =
 export type ButtonProps = {
   children: string
   type: ButtonViewsType
+  onClick: () => void
 }

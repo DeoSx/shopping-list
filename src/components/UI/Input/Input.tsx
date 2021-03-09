@@ -21,6 +21,7 @@ const Input: React.FC<InputTypeProps> = (props) => {
         onChange={(e) => onChangeHandler(e)}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
+        value={props.value}
       />
     </div>
   )

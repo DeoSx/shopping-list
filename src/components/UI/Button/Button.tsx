@@ -6,7 +6,11 @@ import './Button.scss'
 const Button: React.FC<ButtonProps> = (props) => {
   const classes = `btn ${props.type}`
 
-  return <button className={classes}>{props.children}</button>
+  return (
+    <button className={classes} onClick={props.onClick}>
+      {props.children}
+    </button>
+  )
 }
 
 export default Button
