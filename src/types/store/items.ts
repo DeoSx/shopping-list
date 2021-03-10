@@ -1,27 +1,27 @@
 export interface IItems {
-  items: ItemFromBack[]
+  items: ItemWithCategoryFromBack[]
   loading: boolean
   error: string
 }
 
 export interface IFetchItems {
-  type: Items.FETCH
+  type: ItemsTypes.FETCH
 }
 
 export interface IFetchItemsSuccess {
-  type: Items.FETCH_SUCCESS
+  type: ItemsTypes.FETCH_SUCCESS
   payload: []
 }
 
 export interface IFetchItemsError {
-  type: Items.FETCH_ERROR
+  type: ItemsTypes.FETCH_ERROR
   payload: string
 }
 
 export type ItemsActions = IFetchItems | IFetchItemsSuccess | IFetchItemsError
 
 
-export enum Items {
+export enum ItemsTypes {
   FETCH = 'FETCH',
   FETCH_SUCCESS = 'FETCH_SUCCESS',
   FETCH_ERROR = 'FETCH_ERROR'
@@ -33,4 +33,10 @@ export type ItemFromBack = {
   note?: string
   quantity: number
   _id: string
+}
+
+export type ItemWithCategoryFromBack = {
+  title: string
+  _id: string
+  items: ItemFromBack[]
 }

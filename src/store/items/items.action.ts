@@ -1,16 +1,16 @@
 import axios from '../../utils/axios'
 import { Dispatch } from 'redux'
-import { Items } from '../../types/store/items'
+import { ItemsTypes } from '../../types/store/items'
 
 export const fetchItemsAction = () => {
 	return async (dispatch: Dispatch) => {
 		try {
-			dispatch({ type: Items.FETCH })
+			dispatch({ type: ItemsTypes.FETCH })
 			const res = await axios.get('/categories')
 			console.log(res.data)
-			if (res && res.data) dispatch({ type: Items.FETCH_SUCCESS, payload: res.data })
+			if (res && res.data) dispatch({ type: ItemsTypes.FETCH_SUCCESS, payload: res.data })
 		} catch (e) {
-			dispatch({ type: Items.FETCH_ERROR, payload: e.message })
+			dispatch({ type: ItemsTypes.FETCH_ERROR, payload: e.message })
 			throw e
 		}
 	}
