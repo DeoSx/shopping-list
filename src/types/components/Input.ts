@@ -5,4 +5,5 @@ export type InputTypeProps = {
   placeholder: string
   label: string
   value: string
+  isTextarea?: boolean
 }
