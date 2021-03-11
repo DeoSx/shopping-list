@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import List from '../../components/List/List'
-import ListItem from '../../components/ListItem/ListItem'
-import Form from '../../components/Form/Form'
+import List from '../../components/List'
+import ListItem from '../../components/ListItem'
+import Form from '../../components/Form'
 
 import { fetchItemsAction } from '../../store/items/items.action'
 import { rootState } from '../../types/store'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Input from '../UI/Input/Input'
+import Input from '../UI/Input'
 import './Form.scss'
 
 const Form: React.FC = () => {
