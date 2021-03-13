@@ -1,10 +1,19 @@
 form {
+  height: 100%;
+  width: 310px;
+  display: flex;
+  flex-direction: column;
   h6 {
     font-weight: 500;
     font-size: 24px;
     line-height: 30px;
   }
   .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 25px;
+  }
+  .form-actions {
+    margin-top: 230px;
+    display: flex;
+    justify-content: space-around;
   }
 }

@@ -12,7 +12,7 @@ import './MainPage.scss'
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch()
-  const items = useSelector((state: rootState) => state.items.items)
+  const items = useSelector((state: rootState) => state.items.list)
 
   useEffect(() => {
     dispatch(fetchItemsAction())

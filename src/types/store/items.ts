@@ -1,5 +1,5 @@
 export interface IItems {
-  items: ItemWithCategoryFromBack[]
+  list: ItemWithCategoryFromBack[]
   loading: boolean
   error: string
 }
