@@ -2,7 +2,7 @@ import { IItems, ItemsTypes } from '../../types/store/items'
 import { ItemsActions } from '../../types/store/items'
 
 const initialState: IItems = {
-  items: [],
+  list: [],
   loading: false,
   error: ''
 }
@@ -14,7 +14,7 @@ const itemsReducer = (state = initialState, action: ItemsActions): IItems => {
     case ItemsTypes.FETCH_SUCCESS:
       return {
         ...state,
-        items: [...state.items, ...action.payload],
+        list: [...state.list, ...action.payload],
         loading: false
       }
     case ItemsTypes.FETCH_ERROR:

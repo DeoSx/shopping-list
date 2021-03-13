@@ -1,30 +1,41 @@
 .btn {
-	max-width: 120px;
-	width: 100%;
-	height: 60px;
-	border-radius: 12px;
-	outline: none;
-	font-weight: bold;
-	line-height: 20px;
-	border: none;
-	cursor: pointer;
-	&--primary {
-		@extend .btn;
-		color: #fff;
-		background-color: #56ccf2;
-	}
-	&--warning {
-		@extend .btn;
-		color: #fff;
-		background-color: #f9a109;
-	}
-	&--light {
-		@extend .btn;
-		color: #34333a;
-		background-color: #fff;
-	}
-	&--small {
-		@extend .btn;
-		height: 40px;
-	}
+  max-width: 120px;
+  width: 100%;
+  height: 60px;
+  border-radius: 12px;
+  outline: none;
+  font-weight: bold;
+  line-height: 20px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  &--primary {
+    @extend .btn;
+    color: #fff;
+    background-color: #56ccf2;
+    &:hover {
+      background-color: #74cce9;
+    }
+  }
+  &--warning {
+    @extend .btn;
+    color: #fff;
+    background-color: #f9a109;
+    &:hover {
+      background-color: #ff8800;
+    }
+  }
+  &--light {
+    @extend .btn;
+    color: #34333a;
+    background-color: #fff;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+  &--small {
+    @extend .btn;
+    padding: 20px 25px;
+    width: max-content;
+  }
 }

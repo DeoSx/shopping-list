@@ -2,10 +2,12 @@ type ButtonViewsType =
   | 'btn--primary'
   | 'btn--warning'
   | 'btn--light'
-  | 'btn--small'
+
+type ButtonSizeType = 'btn--small' | 'btn--medium' | 'btn--large'
 
 export type ButtonProps = {
   children: string
   type: ButtonViewsType
-  onClick: () => void
+  onClick?: () => void
+  size?: ButtonSizeType
 }
