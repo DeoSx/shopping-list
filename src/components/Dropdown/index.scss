@@ -4,17 +4,34 @@
   flex-direction: column;
   justify-content: center;
   &-list {
-    position: absolute;
+    padding: 0 8px;
     height: 170px;
-    bottom: -10px;
     display: flex;
     flex-direction: column;
     background: #ffffff;
     border: 1px solid #e0e0e0;
     box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.04);
     border-radius: 12px;
-    div {
-      width: 100%;
+    overflow-y: scroll;
+    &__item {
+      display: flex;
+      align-items: center;
+      padding: 11px 22px;
+      color: #828282;
+      font-weight: 500;
+      height: 47px;
+      transition: 0.2s;
+      cursor: pointer;
+      &:hover {
+        background: #f2f2f2;
+        border-radius: 12px;
+        color: #34333a;
+      }
+      &.active {
+        background: #f2f2f2;
+        border-radius: 12px;
+        color: #34333a;
+      }
     }
   }
 }

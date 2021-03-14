@@ -14,7 +14,7 @@ const itemsReducer = (state = initialState, action: ItemsActions): IItems => {
     case ItemsTypes.FETCH_SUCCESS:
       return {
         ...state,
-        list: [...state.list, ...action.payload],
+        list: [...action.payload],
         loading: false
       }
     case ItemsTypes.FETCH_ERROR:
@@ -22,6 +22,20 @@ const itemsReducer = (state = initialState, action: ItemsActions): IItems => {
         ...state,
         loading: false,
         error: ''
+      }
+    case ItemsTypes.CREATE_ITEM:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        list: [...state.list.map(i => i._id === action.payload._id ? { ...action.payload } : i)]
+      }
+    case ItemsTypes.CREATE_CATEGORY:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        list: [...state.list, action.payload]
       }
     default:
       return state

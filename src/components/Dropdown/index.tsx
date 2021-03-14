@@ -1,22 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { IDropdown } from '../../types/components/Dropdown'
 
 import Input from '../UI/Input'
+import './index.scss'
 
 const Dropdown: React.FC<IDropdown> = (props) => {
-  const [category, setCategory] = useState<string>('')
-
   return (
     <div className="dropdown">
       <Input
-        onChange={setCategory}
-        value={category}
+        onChange={props.onChange}
+        value={props.value}
         label="Category"
         placeholder="Enter a category"
       />
       <div className="dropdown-list">
         {props.categories.map((i) => (
-          <div key={i._id}>{i.title}</div>
+          <div
+            className="dropdown-list__item"
+            key={i._id}
+            onClick={(e) => props.onClick(e)}
+          >
+            {i.title}
+          </div>
         ))}
       </div>
     </div>

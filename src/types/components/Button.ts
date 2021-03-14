@@ -10,4 +10,5 @@ export type ButtonProps = {
   type: ButtonViewsType
   onClick?: () => void
   size?: ButtonSizeType
+  disabled?: boolean
 }

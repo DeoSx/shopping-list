@@ -16,7 +16,7 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchItemsAction())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="main-page">
