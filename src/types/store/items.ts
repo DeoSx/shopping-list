@@ -18,13 +18,25 @@ export interface IFetchItemsError {
   payload: string
 }
 
-export type ItemsActions = IFetchItems | IFetchItemsSuccess | IFetchItemsError
+export interface ICreateItem {
+  type: ItemsTypes.CREATE_ITEM,
+  payload: ItemWithCategoryFromBack
+}
+
+export interface ICreateCategory {
+  type: ItemsTypes.CREATE_CATEGORY
+  payload: ItemWithCategoryFromBack
+}
+
+export type ItemsActions = IFetchItems | IFetchItemsSuccess | IFetchItemsError | ICreateItem | ICreateCategory
 
 
 export enum ItemsTypes {
   FETCH = 'FETCH',
   FETCH_SUCCESS = 'FETCH_SUCCESS',
-  FETCH_ERROR = 'FETCH_ERROR'
+  FETCH_ERROR = 'FETCH_ERROR',
+  CREATE_ITEM = 'CREATE_ITEM',
+  CREATE_CATEGORY = 'CREATE_CATEGORY'
 }
 
 export type ItemFromBack = {
@@ -33,6 +45,13 @@ export type ItemFromBack = {
   note?: string
   quantity: number
   _id: string
+}
+
+export type ItemToBack = {
+  image: string
+  name: string
+  note?: string
+  title: string
 }
 
 export type ItemWithCategoryFromBack = {

@@ -8,4 +8,9 @@
 		font-size: 18px;
 		line-height: 22px;
 	}
+	&__items {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
 }

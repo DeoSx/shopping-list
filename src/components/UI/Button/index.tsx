@@ -7,7 +7,11 @@ const Button: React.FC<ButtonProps> = (props) => {
   const classes = `btn ${props.type} ${props.size}`
 
   return (
-    <button className={classes} onClick={props.onClick}>
+    <button
+      className={classes}
+      onClick={props.onClick}
+      disabled={props.disabled}
+    >
       {props.children}
     </button>
   )

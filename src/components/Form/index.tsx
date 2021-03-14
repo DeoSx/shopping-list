@@ -1,5 +1,5 @@
-import React, { useState, FormEvent } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, SyntheticEvent } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Input from '../UI/Input'
 import Button from '../UI/Button'
@@ -7,49 +7,122 @@ import Dropdown from '../Dropdown'
 import './Form.scss'
 import { rootState } from '../../types/store'
 
+import {
+  createItemAction,
+  createCategoryAction,
+} from '../../store/items/items.action'
+
 const Form: React.FC = () => {
+  const [formView, setFormView] = useState<boolean>(true)
   const [name, setName] = useState<string>('')
   const [note, setNote] = useState<string>('')
   const [image, setImage] = useState<string>('')
+  const [category, setCategory] = useState<string>('')
+  const [categoryTitle, setCategoryTitle] = useState<string>('')
 
+  const dispatch = useDispatch()
   const categories = useSelector((state: rootState) => state.items.list)
 
-  const submitHanler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(e)
+  const filterCategoryHandler = (e: string): void => {
+    setCategory(e)
+  }
+  const categoryClickHandler = (e: SyntheticEvent) => {
+    const target = e.target as HTMLDivElement
+    setCategory(target.innerText)
+  }
+
+  const submitHanler = () => {
+    const options = {
+      name,
+      note,
+      image,
+      title: category,
+    }
+    dispatch(createItemAction(options))
+  }
+
+  const createCategory = () => {
+    if (categoryTitle.length) {
+      dispatch(createCategoryAction(categoryTitle))
+    }
+  }
+
+  const clearFields = () => {
+    setName('')
+    setNote('')
+    setImage('')
+    setCategory('')
+  }
+
+  const formViewHandler = () => {
+    setFormView(!formView)
+  }
+
+  const formItemRender = () => {
+    return (
+      <>
+        <Input
+          onChange={setName}
+          value={name}
+          placeholder="Enter a name"
+          label="Name"
+        />
+        <Input
+          onChange={setNote}
+          value={note}
+          placeholder="Enter a note"
+          label="Note (optional)"
+          isTextarea={true}
+        />
+        <Input
+          onChange={setImage}
+          value={image}
+          placeholder="Enter a url"
+          label="Image"
+        />
+        <Dropdown
+          categories={categories}
+          onChange={filterCategoryHandler}
+          onClick={categoryClickHandler}
+          value={category}
+        />
+        <div className="form-actions">
+          <Button type="btn--light" size="btn--medium" onClick={clearFields}>
+            cancel
+          </Button>
+          <Button type="btn--warning" size="btn--medium" onClick={submitHanler}>
+            Save
+          </Button>
+        </div>
+      </>
+    )
+  }
+
+  const formCategoryRender = () => {
+    return (
+      <>
+        <Input
+          onChange={setCategoryTitle}
+          value={categoryTitle}
+          label="Category of items"
+          placeholder="Enter a name of category"
+        />
+        <Button type="btn--warning" onClick={createCategory}>
+          Create category
+        </Button>
+      </>
+    )
   }
 
   return (
-    <form onSubmit={submitHanler}>
-      <h6>Add a new item</h6>
-      <Input
-        onChange={setName}
-        value={name}
-        placeholder="Enter a name"
-        label="Name"
-      />
-      <Input
-        onChange={setNote}
-        value={note}
-        placeholder="Enter a note"
-        label="Note (optional)"
-        isTextarea={true}
-      />
-      <Input
-        onChange={setImage}
-        value={image}
-        placeholder="Enter a url"
-        label="Image"
-      />
-      <Dropdown categories={categories} />
-      <div className="form-actions">
-        <Button type="btn--light" size="btn--small">
-          cancel
-        </Button>
-        <Button type="btn--warning" size="btn--small">
-          Save
+    <form onSubmit={(e) => e.preventDefault()}>
+      <div className="form-top">
+        <h6>Add a new item</h6>
+        <Button type="btn--primary" size="btn--small" onClick={formViewHandler}>
+          {formView ? 'Add category' : 'Add item'}
         </Button>
       </div>
+      {formView ? formItemRender() : formCategoryRender()}
     </form>
   )
 }

@@ -3,6 +3,11 @@ form {
   width: 310px;
   display: flex;
   flex-direction: column;
+  .form-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   h6 {
     font-weight: 500;
     font-size: 24px;
@@ -12,7 +17,7 @@ form {
     margin-bottom: 25px;
   }
   .form-actions {
-    margin-top: 230px;
+    margin-top: 50px;
     display: flex;
     justify-content: space-around;
   }
