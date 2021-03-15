@@ -31,27 +31,30 @@ const Form: React.FC = () => {
     setCategory(target.innerText)
   }
 
+  const clearFields = () => {
+    setName('')
+    setNote('')
+    setImage('')
+    setCategory('')
+  }
+
   const submitHanler = () => {
-    const options = {
+    const data = {
       name,
       note,
       image,
       title: category,
+      categoryId: categories.find((i) => i.title === category)?._id,
     }
-    dispatch(createItemAction(options))
+
+    dispatch(createItemAction(data))
+    clearFields()
   }
 
   const createCategory = () => {
     if (categoryTitle.length) {
       dispatch(createCategoryAction(categoryTitle))
     }
-  }
-
-  const clearFields = () => {
-    setName('')
-    setNote('')
-    setImage('')
-    setCategory('')
   }
 
   const formViewHandler = () => {

@@ -52,6 +52,7 @@ export type ItemToBack = {
   name: string
   note?: string
   title: string
+  categoryId: string | undefined
 }
 
 export type ItemWithCategoryFromBack = {
