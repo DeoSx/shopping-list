@@ -15,10 +15,10 @@ export const fetchItemsAction = () => {
 	}
 }
 
-export const createItemAction = (options: ItemToBack) => {
+export const createItemAction = (data: ItemToBack) => {
 	return async (dispatch: Dispatch) => {
 		try {
-			const res = await axios.put('/categories/item', options)
+			const res = await axios.put('/categories/item', data)
 			if (res && res.data) dispatch({ type: ItemsTypes.CREATE_ITEM, payload: res.data })
 		} catch (e) {
 			dispatch({ type: ItemsTypes.FETCH_ERROR, payload: e.message })
