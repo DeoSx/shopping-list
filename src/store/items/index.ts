@@ -4,7 +4,8 @@ import { ItemsActions } from '../../types/store/items'
 const initialState: IItems = {
   list: [],
   loading: false,
-  error: ''
+  error: '',
+  itemInfo: null
 }
 
 const itemsReducer = (state = initialState, action: ItemsActions): IItems => {
@@ -21,7 +22,7 @@ const itemsReducer = (state = initialState, action: ItemsActions): IItems => {
       return {
         ...state,
         loading: false,
-        error: ''
+        error: action.payload
       }
     case ItemsTypes.CREATE_ITEM:
       return {
@@ -36,6 +37,11 @@ const itemsReducer = (state = initialState, action: ItemsActions): IItems => {
         loading: false,
         error: '',
         list: [...state.list, action.payload]
+      }
+    case ItemsTypes.SET_INFO_ITEM:
+      return {
+        ...state,
+        itemInfo: action.payload
       }
     default:
       return state

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import './index.scss'
+
 import { InfoBarProps } from '../../types/components/InfoBar'
 
 const InfoBar: React.FC<InfoBarProps> = (props) => {

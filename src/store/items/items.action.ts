@@ -1,9 +1,9 @@
 import axios from '../../utils/axios'
-import { Dispatch } from 'redux'
-import { ItemsTypes, ItemToBack } from '../../types/store/items'
+import { ThunkType } from '../../types/store'
+import { ItemsTypes, ItemToBack, ItemInfoType } from '../../types/store/items'
 
-export const fetchItemsAction = () => {
-	return async (dispatch: Dispatch) => {
+export const fetchItemsAction = (): ThunkType => {
+	return async (dispatch) => {
 		try {
 			dispatch({ type: ItemsTypes.FETCH })
 			const res = await axios.get('/categories')
@@ -15,8 +15,8 @@ export const fetchItemsAction = () => {
 	}
 }
 
-export const createItemAction = (data: ItemToBack) => {
-	return async (dispatch: Dispatch) => {
+export const createItemAction = (data: ItemToBack): ThunkType => {
+	return async (dispatch) => {
 		try {
 			const res = await axios.put('/categories/item', data)
 			if (res && res.data) dispatch({ type: ItemsTypes.CREATE_ITEM, payload: res.data })
@@ -27,8 +27,8 @@ export const createItemAction = (data: ItemToBack) => {
 	}
 }
 
-export const createCategoryAction = (title: string) => {
-	return async (dispatch: Dispatch) => {
+export const createCategoryAction = (title: string): ThunkType => {
+	return async (dispatch) => {
 		try {
 			const res = await axios.post('/categories', { title })
 			dispatch({ type: ItemsTypes.CREATE_CATEGORY, payload: res.data })
@@ -37,4 +37,11 @@ export const createCategoryAction = (title: string) => {
 			throw e
 		}
 	}
+}
+
+export const setItemInfo = (data: ItemInfoType): ThunkType => (dispatch, getState) => {
+	const list = getState().items.list
+	const category = list.find(i => i._id === data.categoryId)
+	const item = category?.items.find(i => i._id === data._id)
+	dispatch({ type: ItemsTypes.SET_INFO_ITEM, payload: item })
 }

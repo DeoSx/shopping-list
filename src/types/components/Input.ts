@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
 export type InputTypeProps = {
   onChange: Dispatch<SetStateAction<string>> | CallbackInput
