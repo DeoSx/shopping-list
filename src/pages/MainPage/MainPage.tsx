@@ -3,16 +3,22 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
-import Form from '../../components/Form'
+// import Form from '../../components/Form'
+import InfoBar from '../../components/InfoBar'
 
-import { fetchItemsAction } from '../../store/items/items.action'
+import { fetchItemsAction, setItemInfo } from '../../store/items/items.action'
+import { ItemFromBack } from '../../types/store/items'
 import { rootState } from '../../types/store'
 
 import './MainPage.scss'
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch()
-  const items = useSelector((state: rootState) => state.items.list)
+  const items = useSelector((state: rootState) => state.items)
+
+  const setInfoHandler = (item: ItemFromBack) => {
+    dispatch(setItemInfo(item))
+  }
 
   useEffect(() => {
     dispatch(fetchItemsAction())
@@ -26,17 +32,18 @@ const MainPage: React.FC = () => {
           you go
         </h1>
         <div className="list-item-container">
-          {items.map((item) => (
+          {items.list.map((item) => (
             <List key={item._id} title={item.title}>
               {item.items.map((i) => (
-                <ListItem key={i._id} title={i.name} />
+                <ListItem key={i._id} data={i} setInfo={setInfoHandler} />
               ))}
             </List>
           ))}
         </div>
       </div>
       <div className="main-page--right">
-        <Form />
+        {/* <Form /> */}
+        {items.itemInfo && <InfoBar {...items.itemInfo} />}
       </div>
     </div>
   )

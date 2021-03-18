@@ -2,6 +2,7 @@ export interface IItems {
   list: ItemWithCategoryFromBack[]
   loading: boolean
   error: string
+  itemInfo: ItemInfoType | null
 }
 
 export interface IFetchItems {
@@ -28,7 +29,18 @@ export interface ICreateCategory {
   payload: ItemWithCategoryFromBack
 }
 
-export type ItemsActions = IFetchItems | IFetchItemsSuccess | IFetchItemsError | ICreateItem | ICreateCategory
+export interface ISetItemInfo {
+  type: ItemsTypes.SET_INFO_ITEM,
+  payload: ItemFromBack
+}
+
+export type ItemsActions =
+  IFetchItems |
+  IFetchItemsSuccess |
+  IFetchItemsError |
+  ICreateItem |
+  ICreateCategory |
+  ISetItemInfo
 
 
 export enum ItemsTypes {
@@ -36,7 +48,8 @@ export enum ItemsTypes {
   FETCH_SUCCESS = 'FETCH_SUCCESS',
   FETCH_ERROR = 'FETCH_ERROR',
   CREATE_ITEM = 'CREATE_ITEM',
-  CREATE_CATEGORY = 'CREATE_CATEGORY'
+  CREATE_CATEGORY = 'CREATE_CATEGORY',
+  SET_INFO_ITEM = 'SET_INFO_ITEM'
 }
 
 export type ItemFromBack = {
@@ -44,6 +57,7 @@ export type ItemFromBack = {
   name: string
   note?: string
   quantity: number
+  categoryId: string | undefined
   _id: string
 }
 
@@ -59,4 +73,12 @@ export type ItemWithCategoryFromBack = {
   title: string
   _id: string
   items: ItemFromBack[]
+}
+
+export type ItemInfoType = {
+  image: string
+  name: string
+  note?: string
+  categoryId: string | undefined
+  _id: string
 }

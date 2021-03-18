@@ -3,10 +3,10 @@ import { ListItemProps } from '../../types/components/ListItem'
 
 import './ListItem.scss'
 
-const ListItem: React.FC<ListItemProps> = (props) => {
+const ListItem: React.FC<ListItemProps> = ({ data, setInfo }) => {
   return (
-    <div className="list-item">
-      <span>{props.title}</span>
+    <div className="list-item" onClick={() => setInfo(data)}>
+      <span>{data.name}</span>
       <i className="fas fa-plus"></i>
     </div>
   )

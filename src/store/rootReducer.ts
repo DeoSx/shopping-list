@@ -15,3 +15,5 @@ export const store: Store<rootState> = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(...middlewares))
 )
+
+export type RootState = ReturnType<typeof rootReducer>
