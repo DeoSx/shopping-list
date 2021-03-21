@@ -6,12 +6,19 @@
   flex-direction: column;
   background-color: #fff;
   border-radius: 15px;
+  a {
+    color: #f9a109;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+  }
   img {
     margin-bottom: 50px;
     width: 300px;
     height: 220px;
     border-radius: 25px;
     object-fit: contain;
+    text-decoration: none;
   }
   &__item {
     margin-bottom: 33px;

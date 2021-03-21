@@ -3,4 +3,5 @@ export type InfoBarProps = {
   name: string
   note?: string
   _id: string
+  clickHandler: () => void
 }

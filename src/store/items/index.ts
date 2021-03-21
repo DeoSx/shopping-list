@@ -43,6 +43,11 @@ const itemsReducer = (state = initialState, action: ItemsActions): IItems => {
         ...state,
         itemInfo: action.payload
       }
+    case ItemsTypes.CLEAR_INFO_ITEM:
+      return {
+        ...state,
+        itemInfo: null
+      }
     default:
       return state
   }

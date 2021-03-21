@@ -45,3 +45,7 @@ export const setItemInfo = (data: ItemInfoType): ThunkType => (dispatch, getStat
 	const item = category?.items.find(i => i._id === data._id)
 	dispatch({ type: ItemsTypes.SET_INFO_ITEM, payload: item })
 }
+
+export const clearItemInfo = () => ({
+	type: ItemsTypes.CLEAR_INFO_ITEM
+})

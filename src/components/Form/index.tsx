@@ -118,7 +118,7 @@ const Form: React.FC = () => {
   }
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={(e) => e.preventDefault()} className="form">
       <div className="form-top">
         <h6>Add a new item</h6>
         <Button type="btn--primary" size="btn--small" onClick={formViewHandler}>
