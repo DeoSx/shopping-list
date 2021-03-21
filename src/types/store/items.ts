@@ -34,13 +34,18 @@ export interface ISetItemInfo {
   payload: ItemFromBack
 }
 
+export interface IClearInfoItem {
+  type: ItemsTypes.CLEAR_INFO_ITEM
+}
+
 export type ItemsActions =
   IFetchItems |
   IFetchItemsSuccess |
   IFetchItemsError |
   ICreateItem |
   ICreateCategory |
-  ISetItemInfo
+  ISetItemInfo |
+  IClearInfoItem
 
 
 export enum ItemsTypes {
@@ -49,7 +54,8 @@ export enum ItemsTypes {
   FETCH_ERROR = 'FETCH_ERROR',
   CREATE_ITEM = 'CREATE_ITEM',
   CREATE_CATEGORY = 'CREATE_CATEGORY',
-  SET_INFO_ITEM = 'SET_INFO_ITEM'
+  SET_INFO_ITEM = 'SET_INFO_ITEM',
+  CLEAR_INFO_ITEM = 'CLEAR_INFO_ITEM'
 }
 
 export type ItemFromBack = {

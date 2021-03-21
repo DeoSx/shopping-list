@@ -2,13 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import './index.scss'
-
 import { InfoBarProps } from '../../types/components/InfoBar'
 
 const InfoBar: React.FC<InfoBarProps> = (props) => {
+
   return (
     <div className="infobar">
-      <Link to="/">back</Link>
+      <Link to="/" onClick={() => props.clickHandler()}>
+        back
+      </Link>
       <img src={props.image} alt="" />
       <div className="infobar__item">
         <span>name</span>
