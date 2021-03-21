@@ -1,23 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import List from '../../components/List'
 import ListItem from '../../components/ListItem'
-// import Form from '../../components/Form'
+import Form from '../../components/Form'
 import InfoBar from '../../components/InfoBar'
 
-import { fetchItemsAction, setItemInfo } from '../../store/items/items.action'
+import {
+  fetchItemsAction,
+  setItemInfo,
+  clearItemInfo,
+} from '../../store/items/items.action'
 import { ItemFromBack } from '../../types/store/items'
 import { rootState } from '../../types/store'
 
 import './MainPage.scss'
 
 const MainPage: React.FC = () => {
+  const [formState, setFormState] = useState<boolean>(false)
+
   const dispatch = useDispatch()
   const items = useSelector((state: rootState) => state.items)
 
   const setInfoHandler = (item: ItemFromBack) => {
     dispatch(setItemInfo(item))
+    setFormState(false)
+  }
+
+  const clearItemInfoHandler = () => {
+    dispatch(clearItemInfo())
+    setFormState(true)
   }
 
   useEffect(() => {
@@ -42,8 +54,13 @@ const MainPage: React.FC = () => {
         </div>
       </div>
       <div className="main-page--right">
-        {/* <Form /> */}
-        {items.itemInfo && <InfoBar {...items.itemInfo} />}
+        {formState ? (
+          <Form />
+        ) : items.itemInfo ? (
+          <InfoBar clickHandler={clearItemInfoHandler} {...items.itemInfo} />
+        ) : (
+          ''
+        )}
       </div>
     </div>
   )
