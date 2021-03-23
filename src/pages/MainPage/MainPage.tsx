@@ -5,6 +5,7 @@ import List from '../../components/List'
 import ListItem from '../../components/ListItem'
 import Form from '../../components/Form'
 import InfoBar from '../../components/InfoBar'
+import ShoppingList from '../../components/ShoppingList'
 
 import {
   fetchItemsAction,
@@ -54,13 +55,14 @@ const MainPage: React.FC = () => {
         </div>
       </div>
       <div className="main-page--right">
-        {formState ? (
+        {/* {formState ? (
           <Form />
         ) : items.itemInfo ? (
           <InfoBar clickHandler={clearItemInfoHandler} {...items.itemInfo} />
         ) : (
           ''
-        )}
+        )} */}
+        <ShoppingList />
       </div>
     </div>
   )
