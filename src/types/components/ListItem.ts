@@ -1,8 +1,7 @@
 import { ItemFromBack } from '../store/items'
-import { ThunkType } from '../store'
-
+import { ShoppingItem } from '../store/shoppingList'
 export interface ListItemProps {
-  // setInfo: ThunkType
-  setInfo: any
+  setInfo: (data: ItemFromBack) => void
   data: ItemFromBack
+  addToList: (item: ShoppingItem) => void
 }

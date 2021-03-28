@@ -1,22 +1,34 @@
 import React from 'react'
 
+import { IShoppingListComponent } from '../../types/components/ShoppingList'
+
 import Button from '../UI/Button'
 import ShoppingItem from './ShoppingItem'
 import './index.scss'
 
-const ShoppingList: React.FC = () => {
+const ShoppingList: React.FC<IShoppingListComponent> = (props) => {
   return (
     <div className="shopping-list">
       <div className="shopping-list__banner">
         <p>Didn't find what you need?</p>
-        <Button type="btn--warning">Add item</Button>
+        <Button type="btn--light" size="btn--small" onClick={props.toAddItem}>
+          Add item
+        </Button>
       </div>
       <h4>Shopping list</h4>
       <div className="shopping-list__container">
-        <div className="shopping-list__container--item">
-          <p className="item-title">Fruits</p>
-          <ShoppingItem />
-        </div>
+        {props.list.length ? (
+          props.list.map((list) => (
+            <div className="shopping-list__container--item">
+              <p className="item-title">{list.title}</p>
+              {list.items.map((item) => (
+                <ShoppingItem {...item} />
+              ))}
+            </div>
+          ))
+        ) : (
+          <h6>No items</h6>
+        )}
       </div>
     </div>
   )
