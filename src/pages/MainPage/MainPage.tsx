@@ -12,7 +12,11 @@ import {
   setItemInfo,
   clearItemInfo,
 } from '../../store/items/items.action'
+
+import { AddToCardAction } from '../../store/shoppingList/list.action'
+
 import { ItemFromBack } from '../../types/store/items'
+import { ShoppingItem } from '../../types/store/shoppingList'
 import { rootState } from '../../types/store'
 
 import './MainPage.scss'
@@ -22,6 +26,7 @@ const MainPage: React.FC = () => {
 
   const dispatch = useDispatch()
   const items = useSelector((state: rootState) => state.items)
+  const shoppingList = useSelector((state: rootState) => state.shoppingList)
 
   const setInfoHandler = (item: ItemFromBack) => {
     dispatch(setItemInfo(item))
@@ -30,7 +35,11 @@ const MainPage: React.FC = () => {
 
   const clearItemInfoHandler = () => {
     dispatch(clearItemInfo())
-    setFormState(true)
+    setFormState(false)
+  }
+
+  const addToList = (item: ShoppingItem) => {
+    dispatch(AddToCardAction(item))
   }
 
   useEffect(() => {
@@ -48,21 +57,28 @@ const MainPage: React.FC = () => {
           {items.list.map((item) => (
             <List key={item._id} title={item.title}>
               {item.items.map((i) => (
-                <ListItem key={i._id} data={i} setInfo={setInfoHandler} />
+                <ListItem
+                  key={i._id}
+                  data={i}
+                  setInfo={setInfoHandler}
+                  addToList={addToList}
+                />
               ))}
             </List>
           ))}
         </div>
       </div>
       <div className="main-page--right">
-        {/* {formState ? (
-          <Form />
+        {formState ? (
+          <Form hideFormHandler={() => setFormState(false)} />
         ) : items.itemInfo ? (
           <InfoBar clickHandler={clearItemInfoHandler} {...items.itemInfo} />
         ) : (
-          ''
-        )} */}
-        <ShoppingList />
+          <ShoppingList
+            list={shoppingList.list}
+            toAddItem={() => setFormState(true)}
+          />
+        )}
       </div>
     </div>
   )

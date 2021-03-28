@@ -6,13 +6,14 @@ import Button from '../UI/Button'
 import Dropdown from '../Dropdown'
 import './Form.scss'
 import { rootState } from '../../types/store'
+import { IForm } from '../../types/components/Form'
 
 import {
   createItemAction,
   createCategoryAction,
 } from '../../store/items/items.action'
 
-const Form: React.FC = () => {
+const Form: React.FC<IForm> = (props) => {
   const [formView, setFormView] = useState<boolean>(true)
   const [name, setName] = useState<string>('')
   const [note, setNote] = useState<string>('')
@@ -36,6 +37,7 @@ const Form: React.FC = () => {
     setNote('')
     setImage('')
     setCategory('')
+    setCategoryTitle('')
   }
 
   const submitHanler = () => {
@@ -54,11 +56,13 @@ const Form: React.FC = () => {
   const createCategory = () => {
     if (categoryTitle.length) {
       dispatch(createCategoryAction(categoryTitle))
+      clearFields()
     }
   }
 
-  const formViewHandler = () => {
-    setFormView(!formView)
+  const hideFormHandler = () => {
+    clearFields()
+    props.hideFormHandler()
   }
 
   const formItemRender = () => {
@@ -90,7 +94,11 @@ const Form: React.FC = () => {
           value={category}
         />
         <div className="form-actions">
-          <Button type="btn--light" size="btn--medium" onClick={clearFields}>
+          <Button
+            type="btn--light"
+            size="btn--medium"
+            onClick={hideFormHandler}
+          >
             cancel
           </Button>
           <Button type="btn--warning" size="btn--medium" onClick={submitHanler}>
@@ -121,7 +129,11 @@ const Form: React.FC = () => {
     <form onSubmit={(e) => e.preventDefault()} className="form">
       <div className="form-top">
         <h6>Add a new item</h6>
-        <Button type="btn--primary" size="btn--small" onClick={formViewHandler}>
+        <Button
+          type="btn--primary"
+          size="btn--small"
+          onClick={() => setFormView(!formView)}
+        >
           {formView ? 'Add category' : 'Add item'}
         </Button>
       </div>
