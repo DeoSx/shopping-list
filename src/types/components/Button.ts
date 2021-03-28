@@ -8,7 +8,7 @@ type ButtonSizeType = 'btn--small' | 'btn--medium' | 'btn--large'
 export type ButtonProps = {
   children: string
   type: ButtonViewsType
-  onClick?: () => void
+  onClick?: any
   size?: ButtonSizeType
   disabled?: boolean
 }
