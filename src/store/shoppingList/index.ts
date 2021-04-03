@@ -1,16 +1,23 @@
-import { IShoppingList, ShoppingTypes } from "../../types/store/shoppingList"
+import { IShoppingList, ShoppingTypes as Types, ShoppingListActions } from "../../types/store/shoppingList"
 
 
 const initialState: IShoppingList = {
-  list: [],
-  name: ''
+  list: JSON.parse(localStorage.getItem('list') || '[]'),
+  name: '',
+  isLoading: false,
+  error: ''
 }
 
-const shoppingListReducer = (state = initialState, action: any): IShoppingList => {
+const shoppingListReducer = (state = initialState, action: ShoppingListActions): IShoppingList => {
   switch (action.type) {
-    case ShoppingTypes.FETCH_LIST:
+    case Types.FETCH_LIST:
       return {
         ...state
+      }
+    case Types.ADD_TO_LIST:
+      return {
+        ...state,
+        list: [...state.list, action.payload]
       }
     default:
       return state
