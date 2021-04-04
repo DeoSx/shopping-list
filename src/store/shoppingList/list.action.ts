@@ -1,27 +1,42 @@
 import { ThunkType } from '../../types/store'
-import { ShoppingTypes as Types, ShoppingItem } from '../../types/store/shoppingList'
+import { ShoppingTypes as Types, ShoppingItem, ShoppingListItem } from '../../types/store/shoppingList'
 
 export const AddToCardAction = (item: ShoppingItem): ThunkType => {
   return (dispatch, getState) => {
     const categories = getState().items.list
-    const shoppingList = getState().shoppingList.list
+    let shoppingList: any = getState().shoppingList.list
+    const category = categories.find(c => c._id === item.categoryId)
 
     if (!shoppingList.length) {
-      const category = categories.find(c => c._id === item.categoryId)
-
       const dataOfShoppingListItem = {
-        _id: category?._id,
-        title: category?.title,
+        _id: category!._id,
+        title: category!.title,
         items: [item]
       }
-      dispatch({ type: Types.ADD_TO_LIST, payload: dataOfShoppingListItem })
-
+      shoppingList.push(dataOfShoppingListItem)
+      dispatch({ type: Types.ADD_TO_LIST, payload: shoppingList })
       return
     }
 
-    // categories.map(category => {
-
-    // })
-
+    if (shoppingList.length) {
+      const shoppingListItemCategoty = shoppingList.find((s: ShoppingListItem) => s._id === item.categoryId)
+      shoppingList.map((si: ShoppingListItem) => {
+        if (si._id === item.categoryId) {
+          const siItem = si.items.find(i => i._id === item._id)
+          if (!siItem) {
+            si.items.push(item)
+          }
+        }
+      })
+      if (!shoppingListItemCategoty) {
+        const data = {
+          _id: category!._id,
+          title: category!.title,
+          items: [item]
+        }
+        shoppingList.push(data)
+      }
+      dispatch({ type: Types.ADD_TO_LIST, payload: shoppingList })
+    }
   }
 }
