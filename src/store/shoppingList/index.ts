@@ -17,7 +17,8 @@ const shoppingListReducer = (state = initialState, action: ShoppingListActions):
     case Types.ADD_TO_LIST:
       return {
         ...state,
-        list: [...state.list, action.payload]
+        // @ts-ignore
+        list: action.payload
       }
     default:
       return state

@@ -19,10 +19,10 @@ const ShoppingList: React.FC<IShoppingListComponent> = (props) => {
       <div className="shopping-list__container">
         {props.list.length ? (
           props.list.map((list) => (
-            <div className="shopping-list__container--item">
+            <div key={list._id} className="shopping-list__container--item">
               <p className="item-title">{list.title}</p>
               {list.items.map((item) => (
-                <ShoppingItem {...item} />
+                <ShoppingItem key={item._id} {...item} />
               ))}
             </div>
           ))
