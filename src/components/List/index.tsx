@@ -1,9 +1,12 @@
 import React from 'react'
 
-import { ListTypeProps } from '../../types/components/List'
 import './List.scss'
 
-const List: React.FC<ListTypeProps> = (props) => {
+interface IListTypeProps {
+  title: string
+}
+
+const List: React.FC<IListTypeProps> = (props) => {
   return (
     <div className="list">
       <h6>{props.title}</h6>

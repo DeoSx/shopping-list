@@ -1,9 +1,16 @@
 import React, { SyntheticEvent } from 'react'
-import { ListItemProps } from '../../types/components/ListItem'
+import { ItemFromBack } from '../../types/store/items'
+import { ShoppingItem } from '../../types/store/shoppingList'
 
 import './ListItem.scss'
 
-const ListItem: React.FC<ListItemProps> = ({ data, setInfo, addToList }) => {
+interface IListItemProps {
+  setInfo: (data: ItemFromBack) => void
+  data: ItemFromBack
+  addToList: (item: ShoppingItem) => void
+}
+
+const ListItem: React.FC<IListItemProps> = ({ data, setInfo, addToList }) => {
   const addToListHandler = (event: SyntheticEvent) => {
     event.stopPropagation()
     const item = {

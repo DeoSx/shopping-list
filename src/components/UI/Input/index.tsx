@@ -1,9 +1,17 @@
-import React, { useState } from 'react'
-import { InputTypeProps } from '../../../types/components/Input'
+import React, { useState, Dispatch, SetStateAction } from 'react'
 
 import './Input.scss'
 
-const Input: React.FC<InputTypeProps> = (props) => {
+type CallbackInput = (e: string) => void
+interface IInputTypeProps {
+  onChange: Dispatch<SetStateAction<string>> | CallbackInput
+  placeholder: string
+  label: string
+  value: string
+  isTextarea?: boolean
+}
+
+const Input: React.FC<IInputTypeProps> = (props) => {
   const inputId = Date.now().toString()
   const onChangeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

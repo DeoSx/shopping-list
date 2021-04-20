@@ -1,10 +1,14 @@
 import React from 'react'
 
-import { IShoppingListComponent } from '../../types/components/ShoppingList'
-
 import Button from '../UI/Button'
 import ShoppingItem from './ShoppingItem'
 import './index.scss'
+import { ShoppingListItem } from '../../types/store/shoppingList'
+
+interface IShoppingListComponent {
+  toAddItem: () => void
+  list: ShoppingListItem[]
+}
 
 const ShoppingList: React.FC<IShoppingListComponent> = (props) => {
   return (

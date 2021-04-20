@@ -1,8 +1,18 @@
 import React from 'react'
-import { IDropdown } from '../../types/components/Dropdown'
 
 import Input from '../UI/Input'
 import './index.scss'
+
+type DropdownType = {
+  title: string
+  _id: string
+}
+interface IDropdown {
+  categories: DropdownType[]
+  onChange: (e: string) => void
+  value: string
+  onClick: (e: React.SyntheticEvent) => void
+}
 
 const Dropdown: React.FC<IDropdown> = (props) => {
   return (

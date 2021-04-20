@@ -1,9 +1,18 @@
 import React from 'react'
-import { ButtonProps } from '../../../types/components/Button'
 
 import './Button.scss'
 
-const Button: React.FC<ButtonProps> = (props) => {
+type ButtonViewsType = 'btn--primary' | 'btn--warning' | 'btn--light'
+type ButtonSizeType = 'btn--small' | 'btn--medium' | 'btn--large'
+interface IButtonProps {
+  children: string
+  type: ButtonViewsType
+  onClick?: any
+  size?: ButtonSizeType
+  disabled?: boolean
+}
+
+const Button: React.FC<IButtonProps> = (props) => {
   const classes = `btn ${props.type} ${props.size}`
 
   return (

@@ -2,10 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import './index.scss'
-import { InfoBarProps } from '../../types/components/InfoBar'
+interface IInfoBarProps {
+  image: string
+  name: string
+  note?: string
+  _id: string
+  clickHandler: () => void
+}
 
-const InfoBar: React.FC<InfoBarProps> = (props) => {
-
+const InfoBar: React.FC<IInfoBarProps> = (props) => {
   return (
     <div className="infobar">
       <Link to="/" onClick={() => props.clickHandler()}>
