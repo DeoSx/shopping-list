@@ -6,12 +6,15 @@ import Button from '../UI/Button'
 import Dropdown from '../Dropdown'
 import './Form.scss'
 import { rootState } from '../../types/store'
-import { IForm } from '../../types/components/Form'
 
 import {
   createItemAction,
   createCategoryAction,
 } from '../../store/items/items.action'
+
+interface IForm {
+  hideFormHandler: () => void
+}
 
 const Form: React.FC<IForm> = (props) => {
   const [formView, setFormView] = useState<boolean>(true)
