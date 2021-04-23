@@ -11,7 +11,7 @@ export interface IFetchItems {
 
 export interface IFetchItemsSuccess {
   type: ItemsTypes.FETCH_SUCCESS
-  payload: []
+  payload: ItemWithCategoryFromBack[]
 }
 
 export interface IFetchItemsError {
@@ -65,6 +65,7 @@ export type ItemFromBack = {
   quantity: number
   categoryId: string | undefined
   _id: string
+  isAdded: boolean
 }
 
 export type ItemToBack = {

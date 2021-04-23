@@ -1,4 +1,5 @@
 import { IShoppingList, ShoppingTypes as Types, ShoppingListActions } from "../../types/store/shoppingList"
+import { itemsConverter } from "../../utils/converters"
 
 
 const initialState: IShoppingList = {
@@ -20,6 +21,17 @@ const shoppingListReducer = (state = initialState, action: ShoppingListActions):
         // @ts-ignore
         list: action.payload
       }
+    case Types.INCREMENT_ITEM:
+      return {
+        ...state,
+        list: [...itemsConverter(state.list, action.payload, 'plus')]
+      }
+    case Types.DECREMENT_ITEM: {
+      return {
+        ...state,
+        list: [...itemsConverter(state.list, action.payload, 'minus')]
+      }
+    }
     default:
       return state
   }
