@@ -1,12 +1,12 @@
 import axios from '../../utils/axios'
 import { ThunkType } from '../../types/store'
-import { ItemsTypes, ItemToBack, ItemInfoType } from '../../types/store/items'
+import { ItemsTypes, ItemToBack, ItemInfoType, ItemWithCategoryFromBack } from '../../types/store/items'
 
 export const fetchItemsAction = (): ThunkType => {
 	return async (dispatch) => {
 		try {
 			dispatch({ type: ItemsTypes.FETCH })
-			const res = await axios.get('/categories')
+			const res = await axios.get<ItemWithCategoryFromBack[]>('/categories')
 			if (res && res.data) dispatch({ type: ItemsTypes.FETCH_SUCCESS, payload: res.data })
 		} catch (e) {
 			dispatch({ type: ItemsTypes.FETCH_ERROR, payload: e.message })
