@@ -25,8 +25,7 @@ const ListItem: React.FC<IListItemProps> = ({ data, setInfo, addToList }) => {
   return (
     <div className="list-item" onClick={() => setInfo(data)}>
       <span>{data.name}</span>
-      <i className="fas fa-plus"></i>
-      <i className="fas fa-check" onClick={(e) => addToListHandler(e)}></i>
+      <i className="fas fa-plus" onClick={(e) => addToListHandler(e)}></i>
     </div>
   )
 }
