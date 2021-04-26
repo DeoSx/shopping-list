@@ -1,13 +1,32 @@
 .aside-block {
-	padding: 45px 25px;
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background-color: #fff;
-	a {
-		margin-bottom: 50px;
-		color: black;
-	}
+  padding: 45px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  a {
+		margin: 25px 0;
+		padding: 0 25px;
+    height: 50px;
+    display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+    position: relative;
+    color: black;
+  }
+  .active {
+    &::after {
+      display: block;
+      position: absolute;
+      content: '';
+      background-color: #f9a109;
+      width: 6px;
+      height: 100%;
+			left: 0;
+			top: 0;
+    }
+  }
 }

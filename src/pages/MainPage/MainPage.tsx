@@ -10,7 +10,7 @@ import ShoppingList from '../../components/ShoppingList'
 import {
   fetchItemsAction,
   setItemInfo,
-  clearItemInfo
+  clearItemInfo,
 } from '../../store/items/items.action'
 
 import { AddToCardAction } from '../../store/shoppingList/list.action'
@@ -47,8 +47,8 @@ const MainPage: React.FC = () => {
   }, [dispatch])
 
   return (
-    <div className="main-page">
-      <div className="main-page--left">
+    <div className="container">
+      <div className="container--left">
         <h1>
           <span>Shoppingify</span> allows you take your shopping list wherever
           you go
@@ -68,7 +68,7 @@ const MainPage: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="main-page--right">
+      <div className="container--right">
         {formState ? (
           <Form hideFormHandler={() => setFormState(false)} />
         ) : items.itemInfo ? (

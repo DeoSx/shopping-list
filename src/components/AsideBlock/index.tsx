@@ -1,20 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import './AsideBlock.scss'
 
 const AsideBlock: React.FC = () => {
   return (
     <aside className="aside-block">
-      <Link to="/">
+      <NavLink to="/">
         <i className="fas fa-th"></i>
-      </Link>
-      <Link to="history">
+      </NavLink>
+      <NavLink to="/history">
         <i className="fas fa-redo-alt"></i>
-      </Link>
-      <Link to="/">
+      </NavLink>
+      {/* <NavLink to="/">
         <i className="fas fa-chart-bar"></i>
-      </Link>
+      </NavLink> */}
     </aside>
   )
 }
