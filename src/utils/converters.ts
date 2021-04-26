@@ -1,13 +1,31 @@
-import { ShoppingItem, ShoppingListItem } from "../types/store/shoppingList";
+import { ShoppingItem, ShoppingListItem } from '../types/store/shoppingList'
 
 type symb = 'minus' | 'plus'
 
-export function itemsConverter(list: ShoppingListItem[], item: ShoppingItem, symb: symb): ShoppingListItem[] {
-  return list.map(c => c._id === item.categoryId
-    ? {
-      ...c, items: c.items.map(i => i._id === item._id
-        ? { ...i, quantity: i.quantity + (symb === 'minus' ? - 1 : + 1) }
-        : i)
+export function itemsConverter(
+  list: ShoppingListItem[],
+  item: ShoppingItem,
+  symb: symb
+): ShoppingListItem[] {
+  const counting = (numb: number) => {
+    const conditions = symb === 'minus' ? -1 : +1
+    if (numb <= 1 && symb === 'minus') {
+      return 0
+    } else {
+      return conditions
     }
-    : c)
+  }
+
+  return list.map((c) =>
+    c._id === item.categoryId
+      ? {
+          ...c,
+          items: c.items.map((i) =>
+            i._id === item._id
+              ? { ...i, quantity: i.quantity + counting(i.quantity) }
+              : i
+          )
+        }
+      : c
+  )
 }

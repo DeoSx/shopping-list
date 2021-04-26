@@ -10,7 +10,7 @@ import ShoppingList from '../../components/ShoppingList'
 import {
   fetchItemsAction,
   setItemInfo,
-  clearItemInfo,
+  clearItemInfo
 } from '../../store/items/items.action'
 
 import { AddToCardAction } from '../../store/shoppingList/list.action'
@@ -72,7 +72,11 @@ const MainPage: React.FC = () => {
         {formState ? (
           <Form hideFormHandler={() => setFormState(false)} />
         ) : items.itemInfo ? (
-          <InfoBar clickHandler={clearItemInfoHandler} {...items.itemInfo} />
+          <InfoBar
+            clickHandler={clearItemInfoHandler}
+            {...items.itemInfo}
+            addToList={addToList}
+          />
         ) : (
           <ShoppingList
             list={shoppingList.list}
