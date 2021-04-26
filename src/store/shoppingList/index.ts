@@ -26,12 +26,17 @@ const shoppingListReducer = (state = initialState, action: ShoppingListActions):
         ...state,
         list: [...itemsConverter(state.list, action.payload, 'plus')]
       }
-    case Types.DECREMENT_ITEM: {
+    case Types.DECREMENT_ITEM:
       return {
         ...state,
         list: [...itemsConverter(state.list, action.payload, 'minus')]
       }
-    }
+    case Types.DELETE_ITEM:
+      const { _id, categoryId } = action.payload
+      return {
+        ...state,
+        list: [...state.list.map(c => c._id === categoryId ? { ...c, items: c.items.filter(i => i._id !== _id) } : c)]
+      }
     default:
       return state
   }

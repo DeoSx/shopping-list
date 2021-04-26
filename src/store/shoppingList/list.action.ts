@@ -60,3 +60,10 @@ export const addSubAction = (operation: string, item: ShoppingItem) => {
     }
   }
 }
+
+export const deleteItemAction = (ids: { _id: string, categoryId: string }) => {
+  return {
+    type: Types.DELETE_ITEM,
+    payload: ids
+  }
+}

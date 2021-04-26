@@ -22,7 +22,8 @@ export enum ShoppingTypes {
   FETCH_LIST = 'FETCH_LIST',
   ADD_TO_LIST = 'ADD_TO_LIST',
   INCREMENT_ITEM = 'INCREMENT_ITEM',
-  DECREMENT_ITEM = 'DECREMENT_ITEM'
+  DECREMENT_ITEM = 'DECREMENT_ITEM',
+  DELETE_ITEM = 'DELETE_ITEM'
 }
 
 export interface IFetchShoppingList {
@@ -45,4 +46,9 @@ interface IDecrementItem {
   payload: ShoppingItem
 }
 
-export type ShoppingListActions = IFetchShoppingList | IAddToList | IIncrementItem | IDecrementItem
+interface IDeleteItem {
+  type: ShoppingTypes.DELETE_ITEM,
+  payload: { _id: string, categoryId: string }
+}
+
+export type ShoppingListActions = IFetchShoppingList | IAddToList | IIncrementItem | IDecrementItem | IDeleteItem

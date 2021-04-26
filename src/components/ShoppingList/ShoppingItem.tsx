@@ -1,6 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { addSubAction } from '../../store/shoppingList/list.action'
+import {
+  addSubAction,
+  deleteItemAction,
+} from '../../store/shoppingList/list.action'
 import { ShoppingItem as ShoppingItemProps } from '../../types/store/shoppingList'
 
 import './index.scss'
@@ -13,16 +16,26 @@ const ShoppingItem: React.FC<ShoppingItemProps> = (props) => {
       categoryId: props.categoryId,
       name: props.name,
       _id: props._id,
-      quantity: props.quantity
+      quantity: props.quantity,
     }
     dispatch(addSubAction(operation, item))
+  }
+
+  const deleteItemHandler = (ids: { _id: string; categoryId: string }) => {
+    dispatch(deleteItemAction(ids))
   }
 
   return (
     <div className="shopping-list__item">
       <p>{props.name}</p>
       <div className="item-actions">
-        <div className="item-actions__basket">
+        <div
+          className="item-actions__basket"
+          onClick={() =>
+            // @ts-ignore
+            deleteItemHandler({ _id: props._id, categoryId: props.categoryId })
+          }
+        >
           <i className="fas fa-trash"></i>
         </div>
         <div className="item-actions__counter">
