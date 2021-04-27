@@ -6,6 +6,8 @@
   background: #fff0de;
   border-radius: 15px;
   &__container {
+    height: 60%;
+    overflow-y: scroll;
     &--item {
       margin-bottom: 40px;
       .item-title {
@@ -111,5 +113,9 @@
         }
       }
     }
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
   }
 }

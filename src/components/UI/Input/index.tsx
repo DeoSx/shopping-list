@@ -6,7 +6,7 @@ type CallbackInput = (e: string) => void
 interface IInputTypeProps {
   onChange: Dispatch<SetStateAction<string>> | CallbackInput
   placeholder: string
-  label: string
+  label?: string
   value: string
   isTextarea?: boolean
 }
@@ -22,9 +22,11 @@ const Input: React.FC<IInputTypeProps> = (props) => {
 
   return (
     <div className="form-group">
-      <label className={`${focus && 'focused'}`} htmlFor={inputId}>
-        {props.label}
-      </label>
+      {props.label && (
+        <label className={`${focus && 'focused'}`} htmlFor={inputId}>
+          {props.label}
+        </label>
+      )}
       {!props.isTextarea ? (
         <input
           className="form-item"

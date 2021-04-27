@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Button from '../UI/Button'
+import Input from '../UI/Input'
 import ShoppingItem from './ShoppingItem'
 import './index.scss'
 import { ShoppingListItem } from '../../types/store/shoppingList'
@@ -11,6 +12,21 @@ interface IShoppingListComponent {
 }
 
 const ShoppingList: React.FC<IShoppingListComponent> = (props) => {
+  const [title, setTitle] = useState<string>('')
+
+  const renderActions = () => (
+    <div className="shopping-list__actions">
+      <Input
+        onChange={setTitle}
+        placeholder="Enter a name of SL"
+        value={title}
+      />
+      <Button type="btn--primary" size="btn--large">
+        Save
+      </Button>
+    </div>
+  )
+
   return (
     <div className="shopping-list">
       <div className="shopping-list__banner">
@@ -34,6 +50,7 @@ const ShoppingList: React.FC<IShoppingListComponent> = (props) => {
           <h6>No items</h6>
         )}
       </div>
+      {props.list.length ? renderActions() : null}
     </div>
   )
 }

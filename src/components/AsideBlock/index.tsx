@@ -6,7 +6,7 @@ import './AsideBlock.scss'
 const AsideBlock: React.FC = () => {
   return (
     <aside className="aside-block">
-      <NavLink to="/">
+      <NavLink exact to="/">
         <i className="fas fa-th"></i>
       </NavLink>
       <NavLink to="/history">
