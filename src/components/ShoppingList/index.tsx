@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 import Button from '../UI/Button'
 import Input from '../UI/Input'
 import ShoppingItem from './ShoppingItem'
 import './index.scss'
-import { ShoppingListItem } from '../../types/store/shoppingList'
+import { IShoppingList, ShoppingListItem } from '../../types/store/shoppingList'
+import { createShoppingList } from '../../store/shoppingList/list.action'
 
 interface IShoppingListComponent {
   toAddItem: () => void
@@ -12,16 +14,26 @@ interface IShoppingListComponent {
 }
 
 const ShoppingList: React.FC<IShoppingListComponent> = (props) => {
-  const [title, setTitle] = useState<string>('')
+  const [name, setName] = useState<string>('')
+  const dispatch = useDispatch()
+
+  const submitHandler = async () => {
+    console.log(name)
+    const data: IShoppingList = {
+      name,
+      list: props.list,
+    }
+    dispatch(createShoppingList(data))
+  }
 
   const renderActions = () => (
     <div className="shopping-list__actions">
-      <Input
-        onChange={setTitle}
-        placeholder="Enter a name of SL"
-        value={title}
-      />
-      <Button type="btn--primary" size="btn--large">
+      <Input onChange={setName} placeholder="Enter a name of SL" value={name} />
+      <Button
+        type="btn--primary"
+        size="btn--large"
+        onClick={submitHandler}
+      >
         Save
       </Button>
     </div>

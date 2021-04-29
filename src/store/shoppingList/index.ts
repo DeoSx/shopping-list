@@ -37,6 +37,12 @@ const shoppingListReducer = (state = initialState, action: ShoppingListActions):
         ...state,
         list: [...state.list.map(c => c._id === categoryId ? { ...c, items: c.items.filter(i => i._id !== _id) } : c)]
       }
+    case Types.CLEAN_LIST:
+      return {
+        ...state,
+        isLoading: false,
+        list: []
+      }
     default:
       return state
   }

@@ -17,6 +17,7 @@ const ShoppingItem: React.FC<ShoppingItemProps> = (props) => {
       name: props.name,
       _id: props._id,
       quantity: props.quantity,
+      image: props.image,
     }
     dispatch(addSubAction(operation, item))
   }

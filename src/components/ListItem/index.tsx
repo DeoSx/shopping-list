@@ -18,6 +18,7 @@ const ListItem: React.FC<IListItemProps> = ({ data, setInfo, addToList }) => {
       categoryId: data.categoryId,
       quantity: data.quantity,
       _id: data._id,
+      image: data.image
     }
     addToList(item)
   }

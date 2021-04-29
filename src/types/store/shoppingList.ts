@@ -1,8 +1,8 @@
 export interface IShoppingList {
   list: ShoppingListItem[]
   name: string
-  error: string
-  isLoading: boolean
+  error?: string
+  isLoading?: boolean
 }
 
 export type ShoppingListItem = {
@@ -16,6 +16,7 @@ export type ShoppingItem = {
   name: string
   categoryId?: string
   _id: string
+  image: string
 }
 
 export enum ShoppingTypes {
@@ -23,7 +24,8 @@ export enum ShoppingTypes {
   ADD_TO_LIST = 'ADD_TO_LIST',
   INCREMENT_ITEM = 'INCREMENT_ITEM',
   DECREMENT_ITEM = 'DECREMENT_ITEM',
-  DELETE_ITEM = 'DELETE_ITEM'
+  DELETE_ITEM = 'DELETE_ITEM',
+  CLEAN_LIST = 'CLEAN_LIST'
 }
 
 export interface IFetchShoppingList {
@@ -51,4 +53,8 @@ interface IDeleteItem {
   payload: { _id: string, categoryId: string }
 }
 
-export type ShoppingListActions = IFetchShoppingList | IAddToList | IIncrementItem | IDecrementItem | IDeleteItem
+interface ICleanList {
+  type: ShoppingTypes.CLEAN_LIST
+}
+
+export type ShoppingListActions = IFetchShoppingList | IAddToList | IIncrementItem | IDecrementItem | IDeleteItem | ICleanList

@@ -2,8 +2,10 @@ import { ThunkType } from '../../types/store'
 import {
   ShoppingTypes as Types,
   ShoppingItem,
-  ShoppingListItem
+  ShoppingListItem,
+  IShoppingList
 } from '../../types/store/shoppingList'
+import axios from '../../utils/axios'
 
 export const AddToCardAction = (item: ShoppingItem): ThunkType => {
   return (dispatch, getState) => {
@@ -65,5 +67,18 @@ export const deleteItemAction = (ids: { _id: string, categoryId: string }) => {
   return {
     type: Types.DELETE_ITEM,
     payload: ids
+  }
+}
+
+
+export const createShoppingList = (data: IShoppingList): ThunkType => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post('/shopping-list/create', data)
+      console.log(res)
+      dispatch({ type: Types.CLEAN_LIST })
+    } catch (e) {
+      throw e
+    }
   }
 }
