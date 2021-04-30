@@ -73,20 +73,8 @@ export const deleteItemAction = (ids: { _id: string, categoryId: string }) => {
 export const createShoppingList = (data: IShoppingList): ThunkType => {
   return async (dispatch) => {
     try {
-      const res = await axios.post('/shopping-list/create', data)
-      console.log(res)
+      await axios.post('/shopping-list/create', data)
       dispatch({ type: Types.CLEAN_LIST })
-    } catch (e) {
-      throw e
-    }
-  }
-}
-
-export const fetchLists = (): ThunkType => {
-  return async () => {
-    try {
-      const res = await axios.get('/shopping-list')
-      console.log(res)
     } catch (e) {
       throw e
     }
