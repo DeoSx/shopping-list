@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ShoppingListItem } from '../../types/store/shoppingList'
+import { dateConverter } from '../../utils/converters'
 
 import './HistoryItem.scss'
 
@@ -20,7 +21,7 @@ const HistoryItem: React.FC<IHistoryItem> = ({ route, data }) => {
       <div className="history-item__name">{data.name}</div>
       <div className="history-item__date">
         <i className="fas fa-calendar-alt"></i>
-        <span>{data.createdAt}</span>
+        <span>{dateConverter(data.createdAt)}</span>
       </div>
     </Link>
   )
