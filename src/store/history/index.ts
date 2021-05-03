@@ -3,7 +3,8 @@ import { HistoryActions, IHistoryState, HistoryTypes as Types } from "../../type
 const initialState: IHistoryState = {
   list: [],
   isLoading: false,
-  error: ''
+  error: '',
+  oneHistory: null
 }
 
 const historyReducer = (state = initialState, action: HistoryActions): IHistoryState => {
@@ -12,6 +13,11 @@ const historyReducer = (state = initialState, action: HistoryActions): IHistoryS
       return {
         ...state,
         list: action.payload
+      }
+    case Types.FETCH_ONE_HISTORY:
+      return {
+        ...state,
+        oneHistory: action.payload
       }
     default:
       return { ...state }

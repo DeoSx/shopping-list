@@ -1,13 +1,12 @@
 import { ThunkType } from '../../types/store'
-import { HistoryTypes as Types } from '../../types/store/history'
+import { HistoryTypes as Types, IHistoryItem } from '../../types/store/history'
 import axios from '../../utils/axios'
 
 export const fetchLists = (): ThunkType => {
   return async (dispatch) => {
     try {
-      const res = await axios.get('/shopping-list')
+      const res = await axios.get<IHistoryItem[]>('/shopping-list')
       dispatch({ type: Types.FETCH_HISTORY, payload: res.data })
-      console.log(res.data)
     } catch (e) {
       throw e
     }
@@ -17,8 +16,8 @@ export const fetchLists = (): ThunkType => {
 export const fetchOneList = (id: string): ThunkType => {
   return async (dispatch) => {
     try {
-      const res = await axios.get(`/shopping-list/${id}`)
-      console.log(res)
+      const res = await axios.get<IHistoryItem>(`/shopping-list/${id}`)
+      dispatch({ type: Types.FETCH_ONE_HISTORY, payload: res.data })
     } catch (e) {
       throw e
     }
