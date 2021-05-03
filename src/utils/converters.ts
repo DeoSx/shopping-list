@@ -19,13 +19,22 @@ export function itemsConverter(
   return list.map((c) =>
     c._id === item.categoryId
       ? {
-          ...c,
-          items: c.items.map((i) =>
-            i._id === item._id
-              ? { ...i, quantity: i.quantity + counting(i.quantity) }
-              : i
-          )
-        }
+        ...c,
+        items: c.items.map((i) =>
+          i._id === item._id
+            ? { ...i, quantity: i.quantity + counting(i.quantity) }
+            : i
+        )
+      }
       : c
   )
+}
+
+export const dateConverter = (str: string) => {
+  const date = new Date(str)
+  const dateNumb = date.getDate()
+  const month = date.getMonth()
+  const year = date.getFullYear()
+
+  return `${dateNumb}.${month}.${year}`
 }
