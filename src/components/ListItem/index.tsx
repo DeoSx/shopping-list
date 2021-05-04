@@ -5,12 +5,18 @@ import { ShoppingItem } from '../../types/store/shoppingList'
 import './ListItem.scss'
 
 interface IListItemProps {
-  setInfo: (data: ItemFromBack) => void
+  setInfo?: (data: ItemFromBack) => void | null
   data: ItemFromBack
-  addToList: (item: ShoppingItem) => void
+  addToList?: (item: ShoppingItem) => void | null
+  withQuantity: boolean
 }
 
-const ListItem: React.FC<IListItemProps> = ({ data, setInfo, addToList }) => {
+const ListItem: React.FC<IListItemProps> = ({
+  data,
+  setInfo,
+  addToList,
+  withQuantity,
+}) => {
   const addToListHandler = (event: SyntheticEvent) => {
     event.stopPropagation()
     const item = {
@@ -18,17 +24,34 @@ const ListItem: React.FC<IListItemProps> = ({ data, setInfo, addToList }) => {
       categoryId: data.categoryId,
       quantity: data.quantity,
       _id: data._id,
-      image: data.image
+      image: data.image,
     }
-    addToList(item)
+    if (addToList) {
+      addToList(item)
+    }
   }
 
-  return (
-    <div className="list-item" onClick={() => setInfo(data)}>
-      <span>{data.name}</span>
-      <i className="fas fa-plus" onClick={(e) => addToListHandler(e)}></i>
-    </div>
-  )
+  const setInfoHandler = () => {
+    if (setInfo) {
+      setInfo(data)
+    }
+  }
+
+  if (!withQuantity) {
+    return (
+      <div className="list-item" onClick={() => setInfoHandler()}>
+        <span>{data.name}</span>
+        <i className="fas fa-plus" onClick={(e) => addToListHandler(e)}></i>
+      </div>
+    )
+  } else {
+    return (
+      <div className="list-item">
+        <span>{data.name}</span>
+        <span className="list-item__quantity">{data.quantity}</span>
+      </div>
+    )
+  }
 }
 
 export default ListItem
