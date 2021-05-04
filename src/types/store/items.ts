@@ -63,9 +63,8 @@ export type ItemFromBack = {
   name: string
   note?: string
   quantity: number
-  categoryId: string | undefined
+  categoryId?: string | undefined
   _id: string
-  isAdded: boolean
 }
 
 export type ItemToBack = {
@@ -86,6 +85,6 @@ export type ItemInfoType = {
   image: string
   name: string
   note?: string
-  categoryId: string | undefined
+  categoryId?: string | undefined
   _id: string
 }

@@ -6,6 +6,9 @@ import { fetchOneList } from '../../store/history/history.actions'
 import { rootState } from '../../types/store'
 import { dateConverter } from '../../utils/converters'
 
+import List from '../../components/List'
+import ListItem from '../../components/ListItem'
+
 interface IRouteParams {
   id: string
 }
@@ -34,6 +37,15 @@ const HistorySlugPage: React.FC<IHistorySlugPage> = ({ match }) => {
           <i className="fas fa-calendar-alt"></i>
           <span>{oneHistory && dateConverter(oneHistory.createdAt)}</span>
         </p>
+        <div className="list-item-container">
+          {oneHistory?.list.map((l) => (
+            <List key={l._id} title={l.title}>
+              {l.items.map((i) => (
+                <ListItem key={i._id} withQuantity={true} data={i} />
+              ))}
+            </List>
+          ))}
+        </div>
       </div>
     </div>
   )

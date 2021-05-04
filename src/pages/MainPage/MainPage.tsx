@@ -62,6 +62,7 @@ const MainPage: React.FC = () => {
                   data={i}
                   setInfo={setInfoHandler}
                   addToList={addToList}
+                  withQuantity={false}
                 />
               ))}
             </List>
